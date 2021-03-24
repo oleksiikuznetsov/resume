@@ -23,18 +23,20 @@
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator';
+
 import SidebarHeader from './components/SidebarHeader.vue';
 import SidebarItems from './components/SidebarItems.vue';
 import SidebarSocial from './components/SidebarSocial.vue';
-@Component({
+
+export default  {
+  name: 'App',
   components: {
     SidebarHeader,
     SidebarItems,
-    SidebarSocial,
+    SidebarSocial
   },
-})
-export default class App extends Vue {}
+}
+
 </script>
 
 <style>
