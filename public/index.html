@@ -5,13 +5,138 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="/src/assets/css/index.css">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+    </div>
+    <div id="loader"> 
+      <div class="load">
+        <pre class="first_line"></pre>
+        <pre class="second_line"></pre>
+      </div>
+    </div>
     <!-- built files will be auto injected -->
+
+<style>
+  
+body {
+  margin: 0 auto;
+  height: 100%;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#app {
+  display: none;
+}
+
+#loader {
+  margin: 0 auto;
+  height: 100vh;
+  width: 100%;
+  background: black;
+}
+
+.d_none {
+  display: none;
+}
+
+.load {
+  width: 245px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.first_line, .second_line {
+  font-family: monospace;
+  color: lime;
+  opacity: 0.8;
+  font-size: 1em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 10px;
+}
+
+ .first_line {
+  padding-left: 35px;
+}
+
+body .fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+  }
+  @keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+  } 
+</style>
+    <script type="text/javascript">
+          
+      let mainPage = document.querySelector('#app');
+      
+      let  textarea_fline = document.querySelector('.first_line');
+      let  textarea_sline = document.querySelector('.second_line');
+      
+      let text_first = 'Hi, I am Alex Kuznetsov';
+      let text_second = 'and I want let you introduce my CV' ;
+      
+      let loader = document.querySelector('#loader');
+      
+      let i = 0;
+      let a = 0;
+      
+      runner();
+      setTimeout(
+        () => {
+          runner_2();
+        }, 2000);
+      
+       function runner() {
+        textarea_fline.append((text_first).charAt(i));
+        i++;
+        setTimeout(
+          () => {
+            if (i < text_first.length) {
+              runner();
+            }
+          }, Math.floor(Math.random() * 10) + 60);
+        }
+       
+        function runner_2() {
+          textarea_sline.append((text_second).charAt(a));
+          a++;
+          setTimeout(
+            () => {
+              if (a < text_second.length) {
+              runner_2();
+            }
+          }, Math.floor(Math.random() * 10) + 60);
+        }
+      
+      setTimeout(() => {loader.classList.add('fadeOut')}, 5000);
+      setTimeout(() => {
+        loader.classList.add('d_none');
+        mainPage.style.display = "block";  
+      }, 6000);
+              </script>
   </body>
 </html>

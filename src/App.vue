@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <VdDashboard
+      pageBackground="#f8f8f8"
+      sidebarHeaderHeight="175px"
+      headerBackground="white"
+      sidebarBackground="white"
+    >
+      <template v-slot:main-content>
+        <router-view />
+      </template>
+      <template v-slot:sidebar-header>
+        <SidebarHeader></SidebarHeader>
+      </template>
+      <template v-slot:sidebar-content>
+        <SidebarItems></SidebarItems>
+      </template>
+      <template v-slot:social-content>
+        <SidebarSocial></SidebarSocial>
+      </template>
+    </VdDashboard>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
+import { Component, Vue } from 'vue-property-decorator';
+import SidebarHeader from './components/SidebarHeader.vue';
+import SidebarItems from './components/SidebarItems.vue';
+import SidebarSocial from './components/SidebarSocial.vue';
+@Component({
   components: {
-    HelloWorld
-  }
-}
+    SidebarHeader,
+    SidebarItems,
+    SidebarSocial,
+  },
+})
+export default class App extends Vue {}
 </script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.title {
+  margin-top: 15px;
 }
 </style>

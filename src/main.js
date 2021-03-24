@@ -1,4 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import VueDashboard from 'vue-dashboard-vd';
+import App from './App.vue';
+import router from './router';
 
-createApp(App).mount('#app')
+Vue.config.productionTip = false;
+
+Vue.use(VueDashboard);
+
+new Vue({
+  router,
+  render: (h) => h(App),
+}).$mount('#app');
